@@ -24,7 +24,8 @@ const Expenses = (props) => {
           filterValue={selectedExpenseYear}
           onFilterChange={filterChangeHandler}
         />
-        {filteredExpenses.length === 0 ? <p>No Expenses found</p> : filteredExpenses.map((expense, index) => (
+        {filteredExpenses.length === 0 && <p>No Expenses found</p>}
+        {filteredExpenses.length > 0 && filteredExpenses.map((expense, index) => (
           <ExpenseItem
             key={expense.id}
             title={expense.title}
