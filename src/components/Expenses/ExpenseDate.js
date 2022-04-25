@@ -4,7 +4,6 @@ import './ExpenseDate.css';
 
 const ExpenseDate = (props) => {
   let { date } = props;
-  date = new Date(date);
 
   const month = date.toLocaleString("en-US", { month: "long" });
   const year = date.getFullYear();
