@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 import "./NewExpense.css";
-import ExpenseOpenForm from "./ExpenseOpenForm";
 import ExpenseForm from "./ExpenseForm";
 
 const NewExpense = (props) => {
-  const { onNewExpense } = props;
+  const [isEditing, setIsEditing] = useState(false);
   const saveNewExpense = (newExpenseData) => {
     // console.log('In new expense js')
     // console.log(newExpenseData);
@@ -14,30 +13,26 @@ const NewExpense = (props) => {
       id: Date.now().toString(),
     };
 
-    onNewExpense(expense);
-    setExpenseFormContentState(expenseOpenFormContent);
+    props.onNewExpense(expense);
+    setIsEditing(false);
   };
 
-  const cancelNewExpense = () => {
-    setExpenseFormContentState(expenseOpenFormContent);
+  const startEditing = () => {
+    setIsEditing(true);
   };
 
-  const addNewExpenseOpenHandler = () => {
-    setExpenseFormContentState(expenseNewFormContent);
-  }
+  const stopEditing = () => {
+    setIsEditing(false);
+  };
 
-  const expenseOpenFormContent = <ExpenseOpenForm onAddNewExpenseClick={addNewExpenseOpenHandler}/>;
-  const expenseNewFormContent = (
-    <ExpenseForm
-      onSaveNewExpense={saveNewExpense}
-      onCancelNewExpense={cancelNewExpense}
-    />
+  return (
+    <div className="new-expense">
+      {!isEditing && <button onClick={startEditing}> Add new expense </button>}
+      {isEditing && (
+        <ExpenseForm onSaveNewExpense={saveNewExpense} onCancel={stopEditing} />
+      )}
+    </div>
   );
-
-  const [expenseFormContentState, setExpenseFormContentState] =
-  useState(expenseOpenFormContent);
-
-  return <div className="new-expense">{expenseFormContentState}</div>;
 };
 
 export default NewExpense;
