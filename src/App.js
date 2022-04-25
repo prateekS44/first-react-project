@@ -1,4 +1,6 @@
 import React from 'react';
+
+import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from "./components/Expenses/Expenses";
 
 const App = () => {
@@ -29,20 +31,25 @@ const App = () => {
     },
   ];
 
-  // return (
-  //   <div>
-  //     <h2>Let's get started!</h2>
-  //     <Expenses expenses={expenses} />
-  //   </div>
-  // );
+  const newExpenseEvent = (newExpense) => {
+    console.log('App js')
+    console.log(newExpense);
+  }
+
+  return (
+    <div>
+      <NewExpense onNewExpense={newExpenseEvent}/>
+      <Expenses expenses={expenses} />
+    </div>
+  );
 
   //Alternative for above code
-  return React.createElement(
-    'div', 
-    {},
-    React.createElement('h2', {}, "Let's get started"),
-    React.createElement(Expenses, { expenses })
-  );
+  // return React.createElement(
+  //   'div', 
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started"),
+  //   React.createElement(Expenses, { expenses })
+  // );
 }
 
 export default App;
