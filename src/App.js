@@ -29,6 +29,12 @@ const App = () => {
       amount: 94.13,
       date: new Date(2022, 1, 17),
     },
+    {
+      id: "e5",
+      title: "New AC",
+      amount: 194.13,
+      date: new Date(2022, 3, 17),
+    }
   ];
 
   const newExpenseEvent = (newExpense) => {
